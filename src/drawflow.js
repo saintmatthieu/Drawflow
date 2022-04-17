@@ -220,11 +220,16 @@ export default class Drawflow {
           if(e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA' && e.target.tagName !== 'SELECT' && e.target.hasAttribute('contenteditable') !== true) {
             this.drag = true;
           }
-        } else {
-          if(e.target.tagName !== 'SELECT') {
-            this.drag = true;
-          }
         }
+        // @saintmatthieu/Orchestrion : commenting this branch out to prevent nodes from being draggable.
+        // In the future it will probably be needed to make it draggable again to allow e.g.
+        // dragging a staff from one roll to the next.
+
+        // else {
+        //   if(e.target.tagName !== 'SELECT') {
+        //     this.drag = true;
+        //   }
+        // }
         break;
       case 'output':
         this.connection = true;
@@ -251,7 +256,8 @@ export default class Drawflow {
           this.removeReouteConnectionSelected();
           this.connection_selected = null;
         }
-        this.editor_selected = true;
+        // @saintmatthieu/Orchestrion
+        // this.editor_selected = true;
         break;
       case 'drawflow':
         if(this.node_selected != null) {
@@ -264,7 +270,8 @@ export default class Drawflow {
           this.removeReouteConnectionSelected();
           this.connection_selected = null;
         }
-        this.editor_selected = true;
+        // @saintmatthieu/Orchestrion
+        // this.editor_selected = true;
         break;
       case 'main-path':
         if(this.node_selected != null) {
@@ -314,17 +321,18 @@ export default class Drawflow {
       break;
       default:
     }
-    if (e.type === "touchstart") {
-      this.pos_x = e.touches[0].clientX;
-      this.pos_x_start = e.touches[0].clientX;
-      this.pos_y = e.touches[0].clientY;
-      this.pos_y_start = e.touches[0].clientY;
-    } else {
-      this.pos_x = e.clientX;
-      this.pos_x_start = e.clientX;
-      this.pos_y = e.clientY;
-      this.pos_y_start = e.clientY;
-    }
+    // @saintmatthieu/Orchestrion
+    // if (e.type === "touchstart") {
+    //   this.pos_x = e.touches[0].clientX;
+    //   this.pos_x_start = e.touches[0].clientX;
+    //   this.pos_y = e.touches[0].clientY;
+    //   this.pos_y_start = e.touches[0].clientY;
+    // } else {
+    //   this.pos_x = e.clientX;
+    //   this.pos_x_start = e.clientX;
+    //   this.pos_y = e.clientY;
+    //   this.pos_y_start = e.clientY;
+    // }
     this.dispatch('clickEnd', e);
   }
 
